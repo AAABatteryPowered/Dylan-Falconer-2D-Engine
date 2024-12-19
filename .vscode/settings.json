@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "global.h": "c",
+        "render_internal.h": "c",
+        "sdl.h": "c",
+        "stdbool.h": "c",
+        "stdio.h": "c",
+        "glad.h": "c",
+        "render.h": "c",
+        "linmath.h": "c"
+    }
+}

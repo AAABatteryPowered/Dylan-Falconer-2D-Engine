@@ -1,8 +1,8 @@
 #ifndef RENDER_H
 #define RENDER_H
 
-#include <SDL2/SDL.h>
-#include <linmath.h>
+#include "../../include/SDL2/SDL.h"
+#include "../../lib/linmath.h"
 
 #include "../types.h"
 
