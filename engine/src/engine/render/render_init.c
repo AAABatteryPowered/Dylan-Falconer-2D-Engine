@@ -22,7 +22,7 @@ SDL_Window *render_init_window(u32 width, u32 height) {
         SDL_WINDOWPOS_CENTERED,
         800,
         600,
-        SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE
+        SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE// | SDL_RENDERER_PRESENTVSYNC
     );
 
     if (!window) {
