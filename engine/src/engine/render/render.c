@@ -23,16 +23,24 @@ void render_begin(void) {
 void render_end(void) {
     SDL_GL_SwapWindow(global.render.window);
 }
-void render_quad(vec2 pos, vec2 size, vec4 color) {
+void render_quad(vec2 pos, vec3 size, vec4 color, vec3 camera) {
     glUseProgram(state.shader_default);
 
     mat4x4 model;
     mat4x4_identity(model);
 
-    mat4x4_look_at()
-    mat4x4_translate(model, pos[0], pos[1], 0);
-    mat4x4_scale_aniso(model, model, size[0], size[1], 1);
+    vec3 eye={camera[0],camera[1],camera[2]};
+    vec3 center={camera[0],camera[1],camera[2]+1};
+    vec3 up={1,0,0};
 
+    
+    //mat4x4_translate(model, pos[0], pos[1], 0);
+    mat4x4_look_at(model, eye, center, up);
+    mat4x4_perspective(&state.projection, 1.57, global.render.width/global.render.height, 1, 10);
+    mat4x4_scale_aniso(model, model, size[0  ], size[1], size[2]);
+
+    mat4x4_mul(model,&state.projection,model);
+  
     glUniformMatrix4fv(glGetUniformLocation(state.shader_default, "model"), 1, GL_FALSE, &model[0][0]);
     glUniform4fv(glad_glGetUniformLocation(state.shader_default, "color"), 1, color);
     

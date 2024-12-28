@@ -21,5 +21,6 @@ void input_update() {
     update_key_state(keyboard_state[global.config.keybinds[INPUT_KEY_UP]], &global.input.up);
     update_key_state(keyboard_state[global.config.keybinds[INPUT_KEY_DOWN]], &global.input.down);
     update_key_state(keyboard_state[global.config.keybinds[INPUT_KEY_JUMP]], &global.input.jump);
+    update_key_state(keyboard_state[global.config.keybinds[INPUT_KEY_SNEAK]], &global.input.sneak);
     update_key_state(keyboard_state[global.config.keybinds[INPUT_KEY_ESCAPE]], &global.input.escape);
 }

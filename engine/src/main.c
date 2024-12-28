@@ -17,7 +17,7 @@ static vec2 pos;
 double yaccel = 0;
 double gravity_accel = 5;
 
-static vec3 camera_position = {0,0,0};
+vec3 camera_position = {0,0,1};
 
 static void input_handle(void) {
 
@@ -25,16 +25,17 @@ static void input_handle(void) {
         should_quit = true;
     
     if (global.input.left == KS_PRESSED || global.input.left == KS_HELD)
-        camera_position[0] -= 500 * global.time.delta;
+        camera_position[1] += 500 * global.time.delta;
     if (global.input.right == KS_PRESSED || global.input.right == KS_HELD)
-        camera_position[0] += 500 * global.time.delta;
-    if (global.input.up == KS_PRESSED || global.input.up == KS_HELD)
-        camera_position[2] += 500 * global.time.delta;
-    if (global.input.down == KS_PRESSED || global.input.down == KS_HELD)
-        camera_position[2] -= 500 * global.time.delta;
-    if (global.input.jump == KS_PRESSED || global.input.jump == KS_HELD)
         camera_position[1] -= 500 * global.time.delta;
-
+    if (global.input.up == KS_PRESSED || global.input.up == KS_HELD)
+        camera_position[0] -= 500 * global.time.delta;
+    if (global.input.down == KS_PRESSED || global.input.down == KS_HELD)
+        camera_position[0] += 500 * global.time.delta;
+    if (global.input.jump == KS_PRESSED || global.input.jump == KS_HELD)
+        camera_position[2] -= 10 * global.time.delta;
+    if (global.input.sneak == KS_PRESSED || global.input.sneak == KS_HELD)
+        camera_position[2] += 10 * global.time.delta;
 }
 
 int main(int argc, char *argv[]) {
@@ -68,12 +69,15 @@ int main(int argc, char *argv[]) {
         input_update();
         input_handle();
 
+        printf("%.6f\n", camera_position[2]);
+
         render_begin();
 
         render_quad(
             pos,
-            (vec2){50,50},
-            (vec4){0,1,1,1});
+            (vec3){50,50,510},
+            (vec4){0,1,1,1},
+            camera_position);
             
         render_end();
         time_update_late();
