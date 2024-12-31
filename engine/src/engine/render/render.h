@@ -16,7 +16,8 @@ typedef struct render_state {
 void render_init(void);
 void render_begin(void);
 void render_end(void);
-void render_quad(vec2 pos, vec2 size, vec4 color);
+//void mulMatrix4x4Vec3(vec3 vec, mat4x4 mat);
+void render_quad(vec3 pos, vec3 camera, vec2 size, vec4 color);
 void render_triangle(vec2 pos, vec2 size, vec4 color);
 
 #endif
